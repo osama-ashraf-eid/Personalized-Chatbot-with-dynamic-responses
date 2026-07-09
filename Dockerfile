@@ -25,8 +25,8 @@ RUN mkdir -p data/raw metadata chroma_db bm25 logs && \
 
 USER appuser
 
-# Hugging Face Spaces (Docker SDK) routes traffic to port 7860
-EXPOSE 7860
+#Render
+EXPOSE 8000
 
 # Run
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]
