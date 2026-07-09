@@ -1,3 +1,13 @@
+---
+title: Egyptian Legal RAG
+emoji: ⚖️
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+---
+
+
 # Egyptian Legal RAG System
 
 A production-ready Retrieval-Augmented Generation (RAG) system for Egyptian legal documents.
