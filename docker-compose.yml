@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+
+  # ==========================================================
+  # Legal RAG API
+  # ==========================================================
+
+  api:
+    build: .
+    container_name: legal-rag-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data/raw:/app/data/raw
+      - ./metadata:/app/metadata
+      - ./chroma_db:/app/chroma_db
+      - ./bm25:/app/bm25
+      - ./logs:/app/logs
+    env_file:
+      - .env
+    restart: unless-stopped
+    depends_on:
+      - ollama
+
+  # ==========================================================
+  # Ollama (Qwen2.5-7B-Instruct)
+  # ==========================================================
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: legal-rag-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
